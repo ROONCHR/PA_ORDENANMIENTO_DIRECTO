@@ -26,6 +26,24 @@ void InterDirIzq(int A[],int n){
 	
 	}
 }
+void InterDirCen(int A[],int n){
+	int cen = 1 ;
+	int i = 0 ;
+
+	while(i <= n-1&&cen == 1){
+		 cen = 0 ;
+		for (int j = 0; j<n-i-1;j++ ){
+			if(A[j] > A[j+1]){
+				int aux = A[j] ;
+				A[j] = A[j+1] ;
+				A[j+1] = aux ;
+				cen = 1 ;
+			}
+		}
+		i = i+1 ;
+	}  
+
+}
 
 int main(){
 	setlocale(LC_ALL, "");
@@ -50,26 +68,20 @@ int main(){
 		cout<<"0)Salir"<<endl;
 		
 		cin>>resp;
-		if(resp!=0){
-			if(resp==1){
-				InterDirDer(arreglo,tam);	
-			}
-			if(resp==2){
-			
-				InterDirIzq(arreglo,tam);	
-			}
-			if(resp==3){
-				//InterDirDer();
-			}
-			if(resp==4){
-				//InterDirDer();
-			}
-			if(resp==0){
-				//InterDirDer();
-			}
-			
-			
+		
+		if(resp==1){
+			InterDirDer(arreglo,tam);	
+		}else if(resp==2){
+			InterDirIzq(arreglo,tam);	
+		}else if(resp==3){
+			InterDirCen(arreglo,tam);
+		}else if(resp==4){
+			//InterDirDer();
+		}else if(resp==0){
+			break;
 		}
+			
+		
 		cout<<"Arreglo: ( ";
 		for(int i=0; i<tam;i++){
 			if(i==tam-1){
