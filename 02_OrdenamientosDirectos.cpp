@@ -1,6 +1,8 @@
 #include <iostream>
-using namespace std;
 
+#include <locale>
+using namespace std;
+	
 void InterDirDer(int A[],int n){
 	for(int i=0; i<n-1;i++){
 		for(int j=0;j<n-i-1;j++){
@@ -12,9 +14,21 @@ void InterDirDer(int A[],int n){
 		}
 	}
 }
+void InterDirIzq(int A[],int n){
+	for(int i=1;i<n;i++){
+		for(int j=n-1;j>i-1;j--){
+			if(A[j] < A[j-1]){
+				int aux = A[j-1] ;
+				A[j-1] = A[j] ;
+				A[j] = aux ;
+			}
+		}
+	
+	}
+}
 
 int main(){
-	
+	setlocale(LC_ALL, "");
 	
 	int resp;
 	int tam;
@@ -42,7 +56,7 @@ int main(){
 			}
 			if(resp==2){
 			
-				//InterDirDer();	
+				InterDirIzq(arreglo,tam);	
 			}
 			if(resp==3){
 				//InterDirDer();
