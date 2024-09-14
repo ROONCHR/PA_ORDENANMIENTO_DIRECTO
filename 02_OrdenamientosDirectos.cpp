@@ -44,15 +44,40 @@ void InterDirCen(int A[],int n){
 	}  
 
 }
+void InterDirBidi(int A[], int n) {
+    int izq = 1;
+    int der = n - 1;
+    int k = n - 1;
+
+    while (izq <= der) {
+        for (int i = der; i >= izq; i--) {
+            if (A[i - 1] > A[i]) {
+                int aux = A[i - 1];
+                A[i - 1] = A[i];
+                A[i] = aux;
+                k = i;
+            }
+        }
+        izq = k + 1;
+
+        for (int i = izq; i <= der; i++) {
+            if (A[i - 1] > A[i]) {
+                int aux = A[i - 1];
+                A[i - 1] = A[i];
+                A[i] = aux;
+                k = i;
+            }
+        }
+        der = k - 1;
+    }
+}
 
 int main(){
 	setlocale(LC_ALL, "");
 	
 	int resp;
 	int tam;
-	while(true){
-	
-		cout<<"Ingrese el tamaño del arreglo: " ;
+	cout<<"Ingrese el tamaño del arreglo: " ;
 		cin>>tam;
 		int arreglo[tam];
 		cout<<"ingrese los datos del arreglo:"<<endl;
@@ -60,6 +85,9 @@ int main(){
 			cout<<"P"<<i<<": ";
 			cin>>arreglo[i];
 		}
+	while(true){
+	
+		
 		cout<<"ELIGA EL METODO DE ORDENAMIENTO: "<<endl;
 		cout<<"1) Intercambio directo por la derecha "<<endl;
 		cout<<"2) Intercambio directo por la Izquierda "<<endl;
@@ -68,7 +96,7 @@ int main(){
 		cout<<"0)Salir"<<endl;
 		
 		cin>>resp;
-		
+	
 		if(resp==1){
 			InterDirDer(arreglo,tam);	
 		}else if(resp==2){
@@ -76,7 +104,7 @@ int main(){
 		}else if(resp==3){
 			InterDirCen(arreglo,tam);
 		}else if(resp==4){
-			//InterDirDer();
+			InterDirBidi(arreglo,tam);
 		}else if(resp==0){
 			break;
 		}
